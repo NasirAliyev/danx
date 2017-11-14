@@ -156,7 +156,7 @@
                 <tr>
                     <td>2</td>
                     <td>Mercedes</td>
-                    <td>10-GJ-007</td>
+                    <td>10-GJ-008</td>
                     <td>
                         <span class="vehicle-ico1"></span>
                         <span class="vehicle-ico2"></span>
