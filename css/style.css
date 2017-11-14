@@ -1,0 +1,287 @@
+a:hover {text-decoration:none}
+
+.egov-width
+{
+    width: 980px;
+}
+
+.bg-colored
+{
+    background:#f9f9f9;
+}
+
+.header
+{
+    border-radius:5px;
+    margin-top:10px;
+    padding:0;
+}
+
+.prof-title
+{
+    font-weight:700;
+    display:inline-block;
+    padding:15px 10px;
+    margin-left:20px;
+}
+
+.hd-right
+{
+    float:right;
+}
+
+.hdr-val
+{
+    display:inline-block;
+    padding:15px 15px;
+    background:#9fd77c;
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px;
+    font-weight:700;
+    color:#fff;
+}
+
+.hdr-key
+{
+    display:inline-block;
+    padding:15px 10px;
+    border-left:1px dashed #ececec;
+}
+
+.main-info
+{
+    margin-top:30px;
+}
+
+.main-info p
+{
+    padding:0;
+    margin:0;
+}
+
+.vertical-space
+{
+    display:block;
+    height:10px;
+
+}
+
+.prof-type
+{
+    margin-bottom:10px;
+}
+
+.sel-title
+{
+    padding-top:8px;
+    font-weight:700;
+    padding:22px 0 0 20px; ;
+}
+
+.selects
+{
+    margin-top:20px;
+    border-radius:5px;
+
+}
+
+.selects select,.selects input
+{
+    display:inline-block;
+    width:150px;
+    margin-left:10px ;
+}
+
+.selects input
+{
+    margin-right:15px;
+}
+
+.inputs
+{
+    padding:15px ;
+    border-left:1px dashed #ececec;
+}
+
+.no-border
+{
+    border:0;
+}
+
+span.move-icon img
+{
+    height:20px;
+    margin-left:10px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
+{
+    border:0;
+}
+
+thead tr th
+{
+    background:#0168cf;
+    color:#fff;
+}
+
+thead tr th:first-child
+{
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
+
+}
+thead tr th:last-child
+{
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px;
+}
+
+tbody tr td img
+{
+    height:16px;
+    positin:relative;
+    margin:-1px 0 0 10px;
+}
+
+tbody
+{
+    border-bottom:1px solid #cccccc
+}
+
+tbody tr td:last-child img
+{
+
+    margin:-5px 0 0 1px;
+}
+
+tbody td
+{
+    margin:0px 0 0 0;
+}
+
+tbody tr:nth-child(even)
+{
+    background:#f9f9f9;
+}
+
+tbody tr span.files
+{
+    display:inline-block;
+    border:1px solid #0168cf;
+    padding:0 5px;
+    border-radius:10px;
+}
+
+tbody tr span.vehicle-ico1,
+tbody tr span.vehicle-ico2,
+tbody tr span.vehicle-ico3
+
+{
+    display:inline-block;
+    width:50px;
+    height: 19px;
+    position:relative;
+    cursor:pointer;
+}
+
+tbody tr span.vehicle-ico1
+{
+    margin-top:6px;
+    background:url(/images/car.png) no-repeat;
+    background-size: auto 16px;
+}
+
+tbody tr span.vehicle-ico1.active
+{
+    background:url(/images/car-color.png) no-repeat;
+    background-size: auto 16px;
+}
+
+tbody tr span.vehicle-ico2
+{
+    width:32px;
+    margin-top:6px;
+    background:url(/images/bus.png) no-repeat;
+    background-size: auto 16px;
+}
+
+tbody tr span.vehicle-ico2.active
+{
+    background:url(/images/bus-color.png) no-repeat;
+    background-size: auto 16px;
+}
+
+tbody tr span.vehicle-ico3
+{
+    top:-3px;
+    background:url(/images/truck.png) no-repeat;
+    background-size:  auto 20px;
+}
+
+tbody tr span.vehicle-ico3.active
+{
+    background:url(/images/truck-color.png) no-repeat;
+    background-size:  auto 20px;
+}
+
+
+.ut-left
+{
+    float:left;
+    width:45%;
+}
+
+.ut-left a
+{
+    display:inline-block;
+    background:#0168cf;
+    padding:10px 20px;
+    border-radius:30px;
+    color:#fff;
+}
+
+.ut-left a  img
+{
+    width:20px;
+    margin-right:5px;
+}
+
+.ut-right
+{
+    float:right;
+    width:45%;
+    text-align:right;
+    font-size:18px;
+}
+
+.ut-right span
+{
+    color:#9fd77c;
+}
+
+.ut-right img
+{
+    width:20px;
+    position:relative;
+    top:-2px;
+}
+
+
+.final-div
+{
+    margin-top:20px;
+    text-align:center;
+    margin-bottom: 50px;
+}
+
+.final-div a
+{
+    display:inline-block;
+    background:#9fd77c;
+    padding:10px 35px;
+    border-radius:5px;
+    color:#fff;
+    font-weight:700;
+
+}
