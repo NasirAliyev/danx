@@ -134,38 +134,14 @@
                 <th>Növü</th>
                 <th>Nəf/ton</th>
                 <th>Sənədlər</th>
-                <th>Qiymət</th>
+                <th>Fəaliyyət ərazisinin növü</th>
+                <th>Region</th>
+                <th>Status</th>
+                <th>Əməliyyat</th>
             </tr>
             </thead>
             <tbody>
 
-            <tr>
-                <td>1</td>
-                <td>İveco Urban</td>
-                <td>10-GJ-007</td>
-                <td>
-                    <span class="vehicle-ico1"></span>
-                    <span class="vehicle-ico2"></span>
-                    <span class="vehicle-ico3"></span>
-                </td>
-                <td>54 nəf</td>
-                <td><span class="files">texpasport.pdf <img src="../images/plus-blue.png"> </span></td>
-                <td>120 <img src="../images/azn.png"></td>
-            </tr>
-
-            <tr>
-                <td>2</td>
-                <td>Mercedes</td>
-                <td>10-GJ-008</td>
-                <td>
-                    <span class="vehicle-ico1"></span>
-                    <span class="vehicle-ico2"></span>
-                    <span class="vehicle-ico3"></span>
-                </td>
-                <td>4 ton</td>
-                <td><span class="files">texpasport.pdf <img src="../images/plus-blue.png"> </span></td>
-                <td>100 <img src="../images/azn.png"></td>
-            </tr>
 
 
             <tr>
@@ -173,97 +149,133 @@
                 <td>İveco Urban</td>
                 <td>10-GJ-007</td>
                 <td>
-                    <span class="vehicle-ico1"></span>
-                    <span class="vehicle-ico2"></span>
-                    <span class="vehicle-ico3"></span>
+                    <span class="vehicle-ico2 active"></span>
                 </td>
                 <td>54 nəf</td>
                 <td><span class="files">texpasport.pdf <img src="../images/plus-blue.png"> </span></td>
-                <td>120 <img src="../images/azn.png"></td>
-            </tr>
-
-            <tr>
-                <td>2</td>
-                <td>Mercedes</td>
-                <td>10-GJ-007</td>
+                <td>Şəhərdaxili</td>
+                <td>Bakı</td>
+                <td>Gözlənilir...</td>
                 <td>
-                    <span class="vehicle-ico1"></span>
-                    <span class="vehicle-ico2"></span>
-                    <span class="vehicle-ico3"></span>
+                    <a href="javascript:void(0)" class="btn btn-info edit"><i class="glyphicon-edit"></i> </a>
+                    <a href="javascript:void(0)" class="btn btn-danger delete"> <i class="glyphicon-remove"></i></a>
                 </td>
-                <td>4 ton</td>
-                <td><span class="files">texpasport.pdf <img src="../images/plus-blue.png"> </span></td>
-                <td>100 <img src="../images/azn.png"></td>
             </tr>
 
-
-            <tr>
-                <td>1</td>
-                <td>İveco Urban</td>
-                <td>10-GJ-007</td>
-                <td>
-                    <span class="vehicle-ico1"></span>
-                    <span class="vehicle-ico2"></span>
-                    <span class="vehicle-ico3"></span>
-                </td>
-                <td>54 nəf</td>
-                <td><span class="files">texpasport.pdf <img src="../images/plus-blue.png"> </span></td>
-                <td>120 <img src="../images/azn.png"></td>
-            </tr>
-
-            <tr>
-                <td>2</td>
-                <td>Mercedes</td>
-                <td>10-GJ-007</td>
-                <td>
-                    <span class="vehicle-ico1"></span>
-                    <span class="vehicle-ico2"></span>
-                    <span class="vehicle-ico3"></span>
-                </td>
-                <td>4 ton</td>
-                <td><span class="files">texpasport.pdf <img src="../images/plus-blue.png"> </span></td>
-                <td>100 <img src="../images/azn.png"></td>
-            </tr>
-
-
-            <tr>
-                <td>1</td>
-                <td>İveco Urban</td>
-                <td>10-GJ-007</td>
-                <td>
-                    <span class="vehicle-ico1"></span>
-                    <span class="vehicle-ico2"></span>
-                    <span class="vehicle-ico3"></span>
-                </td>
-                <td>54 nəf</td>
-                <td><span class="files">texpasport.pdf <img src="../images/plus-blue.png"> </span></td>
-                <td>120 <img src="../images/azn.png"></td>
-            </tr>
-
-            <tr>
-                <td>2</td>
-                <td>Mercedes</td>
-                <td>10-GJ-007</td>
-                <td>
-                    <span class="vehicle-ico1"></span>
-                    <span class="vehicle-ico2"></span>
-                    <span class="vehicle-ico3"></span>
-                </td>
-                <td>4 ton</td>
-                <td><span class="files">texpasport.pdf <img src="../images/plus-blue.png"> </span></td>
-                <td>100 <img src="../images/azn.png"></td>
-            </tr>
 
 
             </tbody>
         </table>
 
+
         <div class="under-table clearfix">
             <div class="ut-left"> <a href="javascript:void(0)"> <img src="../images/plus.png"> Avtomobil əlavə et </a> </div>
-            <div class="ut-right"> Toplam : <span> 984 </span> <img src="../images/manat.png"> </div>
+            <div class="ut-right">  </div>
         </div>
 
-        <div class="final-div"> <a href="javascript:void(0)"> Əməliyyatı tamamla </a> </div>
+        <form action="/ajax.php?action=vehicle" enctype="multipart/form-data" class="vehicle-form form-horizontal ">
+
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Avtomobilin adı</span>
+                <div class="col-sm-8 col-lg-9 controls"><input type="text" name="vehicle" class="form-control" value=""></div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Nömrəsi</span>
+                <div class="col-sm-8 col-lg-9 controls"><input type="text" name="number" class="form-control half-width" value=""></div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Növü</span>
+                <div class="col-sm-8 col-lg-9 controls">
+                    <span class="vehicle-ico1"></span>
+                    <span class="vehicle-ico2"></span>
+                    <span class="vehicle-ico3"></span>
+                    <input type="hidden" name="type" >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Nəfər / Ton</span>
+                <div class="col-sm-8 col-lg-9 controls">
+                    <input type="number" step="1" name="capacity" class="form-control half-width" value="0">
+                    <select class="form-control half-width" name="capacitytype">
+                        <option value="1">Nəfər</option>
+                        <option value="2">Ton</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Fəaliyyət ərazisinin növü</span>
+                <div class="col-sm-8 col-lg-9 controls">
+                    <select class="form-control half-width" name="regiontype">
+                        <option value="1">Şəhərdaxili</option>
+                        <option value="2">Şəhərlərarası</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Region</span>
+                <div class="col-sm-8 col-lg-9 controls">
+                    <select class="form-control half-width" name="region">
+                        <option value="Abşeron">Abşeron</option>
+                        <option value="Bakı">Bakı</option>
+                        <option value="Sumqayıt">Sumqayıt</option>
+                    </select>
+                    <select class="form-control half-width" name="region">
+                        <option value="Abşeron">Abşeron</option>
+                        <option value="Bakı">Bakı</option>
+                        <option value="Sumqayıt">Sumqayıt</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Müddət (ay)</span>
+                <div class="col-sm-8 col-lg-9 controls">
+                    <input type="number" step="1" name="months" class="form-control half-width" value="1">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Texpasport (ön)</span>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc1-1"></div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Texpasport (arxa)</span>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc1-2"></div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Sürücülük vəsiqəsi (ön)</span>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc2-1"> </div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Sürücülük vəsiqəsi (arxa)</span>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc2-2"> </div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label"></span>
+                <div class="col-sm-8 col-lg-9 controls"><h5>Əgər texpasport başqasının adınadırsa</h5></div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Etibarnamə </span>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc3"></div>
+            </div>
+
+
+            <div class="final-div">   <a class="do-action" href="javascript:void(0)"> Əməliyyatı tamamla </a> </div>
+
+        </form>
+
 
     </div>
 

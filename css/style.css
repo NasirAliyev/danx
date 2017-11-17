@@ -117,6 +117,7 @@ span.move-icon img
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
 {
     border:0;
+    position:relative;
 }
 
 thead tr th
@@ -139,8 +140,9 @@ thead tr th:last-child
 
 tbody tr td img
 {
+    width:16px;
     height:16px;
-    positin:relative;
+    position:relative;
     margin:-1px 0 0 10px;
 }
 
@@ -167,15 +169,16 @@ tbody tr:nth-child(even)
 
 tbody tr span.files
 {
+    width: 135px;
     display:inline-block;
     border:1px solid #0168cf;
     padding:0 5px;
     border-radius:10px;
 }
 
-tbody tr span.vehicle-ico1,
-tbody tr span.vehicle-ico2,
-tbody tr span.vehicle-ico3
+span.vehicle-ico1,
+span.vehicle-ico2,
+span.vehicle-ico3
 
 {
     display:inline-block;
@@ -185,20 +188,20 @@ tbody tr span.vehicle-ico3
     cursor:pointer;
 }
 
-tbody tr span.vehicle-ico1
+span.vehicle-ico1
 {
     margin-top:6px;
     background:url(/images/car.png) no-repeat;
     background-size: auto 16px;
 }
 
-tbody tr span.vehicle-ico1.active
+span.vehicle-ico1.active
 {
     background:url(/images/car-color.png) no-repeat;
     background-size: auto 16px;
 }
 
-tbody tr span.vehicle-ico2
+span.vehicle-ico2
 {
     width:32px;
     margin-top:6px;
@@ -206,20 +209,20 @@ tbody tr span.vehicle-ico2
     background-size: auto 16px;
 }
 
-tbody tr span.vehicle-ico2.active
+span.vehicle-ico2.active
 {
     background:url(/images/bus-color.png) no-repeat;
     background-size: auto 16px;
 }
 
-tbody tr span.vehicle-ico3
+span.vehicle-ico3
 {
     top:-3px;
     background:url(/images/truck.png) no-repeat;
     background-size:  auto 20px;
 }
 
-tbody tr span.vehicle-ico3.active
+span.vehicle-ico3.active
 {
     background:url(/images/truck-color.png) no-repeat;
     background-size:  auto 20px;
@@ -272,10 +275,10 @@ tbody tr span.vehicle-ico3.active
 {
     margin-top:20px;
     text-align:center;
-    margin-bottom: 50px;
+
 }
 
-.final-div a
+a.do-action
 {
     display:inline-block;
     background:#9fd77c;
@@ -284,4 +287,22 @@ tbody tr span.vehicle-ico3.active
     color:#fff;
     font-weight:700;
 
+}
+
+.half-width
+{
+    width:45%;
+    display:inline-block;
+}
+.controls .half-width:first-child
+{
+    margin-right:20px;
+}
+
+.vehicle-form
+{
+    margin:30px 0;
+    border:1px solid #cccccc;
+    padding:20px;
+    border-radius:5px;
 }

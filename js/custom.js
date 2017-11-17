@@ -18,7 +18,7 @@ $(document).on('click','tbody tr span.vehicle-ico1,tbody tr span.vehicle-ico2,tb
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    var elems = document.querySelectorAll('tbody tr span.vehicle-ico1,tbody tr span.vehicle-ico2,tbody tr span.vehicle-ico3');
+    var elems = document.querySelectorAll('span.vehicle-ico1,span.vehicle-ico2,span.vehicle-ico3');
 
     for ( var i=0; i<elems.length; i++ )
     {
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.classList.remove('active');
             else {
 
-                 var spans=this.closest('td').querySelectorAll('span');
+                 var spans=this.closest('div').querySelectorAll('span');
                  for(var j=0; j < spans.length; j++)
                      spans[j].classList.remove('active');
                  this.classList.add('active');
