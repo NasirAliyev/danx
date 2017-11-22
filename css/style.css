@@ -143,7 +143,7 @@ tbody tr td img
     width:16px;
     height:16px;
     position:relative;
-    margin:-1px 0 0 10px;
+    margin:-3px 0 0 10px;
 }
 
 tbody
@@ -275,18 +275,23 @@ span.vehicle-ico3.active
 {
     margin-top:20px;
     text-align:center;
-
 }
 
-a.do-action
+button.do-action
 {
     display:inline-block;
-    background:#9fd77c;
+    background:rgba(129, 183, 95, 1);
     padding:10px 35px;
     border-radius:5px;
     color:#fff;
     font-weight:700;
+    border:0;
 
+}
+
+.do-action:hover
+{
+    background:rgba(129, 183, 95, 0.9);
 }
 
 .half-width
@@ -305,4 +310,41 @@ a.do-action
     border:1px solid #cccccc;
     padding:20px;
     border-radius:5px;
+    position: relative;
+}
+
+td .btn{
+
+    width:30px;
+    height:24px;
+    padding:2px 0 0 0;
+}
+
+.message-box
+{
+    margin:10px 0;
+    position:relative;
+    z-index:9;
+    font-weight:700;
+    min-height: 20px;
+}
+
+.loading-overlay
+{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+    background: rgba(141, 165, 57, 0.41);
+}
+
+.close-form
+{
+    width:32px;
+    position:absolute;
+    right:-16px;
+    top:-16px;
+    cursor:pointer;
+    background:#fff;
 }

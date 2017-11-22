@@ -1,22 +1,28 @@
-<? session_start();
+<?php session_start();
 
-spl_autoload_register(function($class){
-    $class_path='classes'.DIRECTORY_SEPARATOR.$class.'.php';
-    if (file_exists($class_path)) require_once $class_path;
-});
+require_once 'autoload.php';
+
+$userInfo = array('company'=>'"WhiteRoof " MMC',
+                  'voen'=>'9900038502',
+                  'name'=>'NOVRUZOV EMIN BƏLAHƏR OĞLU',
+                  'type'=>2,
+                  'date'=>'08.09.1986',
+                  'company_long'=>'"WhiteRoof" MƏHDUD MƏSULİYYƏTLİ CƏMİYYƏTİ',
+                  'address'=>'Dilarə küç, 186',
+                  'img'=>'/images/pasp.png');
 
 
-$userInfo = array('"WhiteRoof " MMC','9900038501','NOVRUZOV EMIN BƏLAHƏR OĞLU',2,'08.09.1986',
-                  '"WhiteRoof" MƏHDUD MƏSULİYYƏTLİ CƏMİYYƏTİ','Dilarə küç, 185','images/pasp.png');
-
-$userInfo='';
-
-if (is_array($userInfo)) unset($_SESSION['userInfo']);
+//if (is_array($userInfo)) unset($_SESSION['userInfo']);
 
 if ( !isset($_SESSION['userInfo']) ) {
-    $user = new User($userInfo[1], $userInfo[2], $userInfo[3], $userInfo[0]);
+    $user = new user($userInfo);
     $_SESSION['userInfo'] = serialize($user);
 }
 
+$user = unserialize($_SESSION['userInfo']);
+
+//print_r($user); exit();
+
+echo date('Y-m-d H:i:s', strtotime("+3 months")); exit();
 
 require_once 'view/template.php';
