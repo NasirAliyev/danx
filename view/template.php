@@ -166,6 +166,12 @@
 
 
             <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label"></span>
+                <div class="col-sm-8 col-lg-9 controls warning-msg"></div>
+            </div>
+
+
+            <div class="form-group">
                 <span class="col-sm-4 col-lg-3 control-label">Avtomobil</span>
                 <div class="col-sm-8 col-lg-9 controls"><input type="text" name="vehicle" class="form-control" value=""></div>
             </div>

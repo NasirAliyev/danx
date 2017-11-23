@@ -144,6 +144,7 @@ function resetForm() {
     showToRegion();
     checkNoTaxi();
     $('.file-exists').html('');
+    $('.warning-msg').html('').hide();
 }
 
 
@@ -153,14 +154,18 @@ function message(msg)
 }
 
 
+function slideToForm(){
+    $('form.vehicle-form').slideDown(function(){
+        $('html,body').animate({
+                scrollTop: $('form.vehicle-form').offset().top},
+            'fast');
+    });
+}
+
 function changeFormStatus()
 {
     if (!$('form.vehicle-form').is(':visible')) {
-        $('form.vehicle-form').slideDown(function(){
-            $('html,body').animate({
-                    scrollTop: $('form.vehicle-form').offset().top},
-                'fast');
-        });
+       slideToForm();
     }
     else
     {
@@ -182,7 +187,11 @@ $(document).on('click','.close-form',function(){  changeFormStatus(); });
 
 $(document).on('click','a.edit-vehicle',function(){
 
-    if (!$('form.vehicle-form').is(':visible')) changeFormStatus();
+    if (!$('form.vehicle-form').is(':visible'))
+        changeFormStatus();
+    else
+        slideToForm();
+
 
     $('.loading-overlay').show();  $('.close-form').hide();
     var id = $(this).parents('tr').data('id');
@@ -216,6 +225,9 @@ $(document).on('click','a.edit-vehicle',function(){
 
                 if (data.content.toregion != null)
                     $('select[name="toregion"]').val(data.content.toregion);
+
+                if (data.content.status == 3 && data.content.message.length > 0 )
+                    $('.warning-msg').html(data.content.message).show();
 
 
                 if (data.content.doc1_1 != null)

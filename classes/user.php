@@ -124,17 +124,17 @@ class user {
     {
         $errorMsg='';
 
-        $db= db::instance()->prepare('select id from users where ( email = :email or phone = :phone) and id != :userid ');
+        $db= db::instance()->prepare('select email,phone from users where ( email = :email or phone = :phone) and id != :userid ');
         $db->bindParam(':email',$email);
         $db->bindParam(':phone',$phone);
         $db->bindParam(':userid',$this->userid);
         $db->execute();
 
-        $row=$db->fetch(PDO::FETCH_ASSOC);
+        $rows=$db->fetchAll();
 
         if ( $db->rowCount() > 0 ) {
-            if ($row['email']==$email && strlen($email)>0) $errorMsg='Bu E-mail artıq istifadə olunur';
-            else if ($row['phone']==$phone && strlen($phone)>0) $errorMsg='Bu Telefon nömrəsi artıq istifadə olunur';
+            if (strlen($email)>0 && array_search($email, array_column($rows, 'email')) !== false ) $errorMsg='Bu E-mail artıq istifadə olunur';
+            else if ( strlen($phone)>0 && array_search($phone, array_column($rows, 'phone')) !== false  ) $errorMsg='Bu Telefon nömrəsi artıq istifadə olunur';
         }
 
 
