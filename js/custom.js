@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 $(document).ready(function() {
+
+    getList();
     showToRegion();
 
     $('form.form-horizontal').ajaxForm({
@@ -39,6 +41,12 @@ $(document).ready(function() {
 });
 
 
+function getList(){
+
+    $.post( "/ajax.php?action=getList",{  } , function( data ) {
+        $( "#tbody" ).html( data.content );
+    },"json");
+}
 
 function checkNoTaxi()
 {

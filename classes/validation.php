@@ -21,10 +21,9 @@ class validation extends core\validation {
 
     function checkCapacity($type,$capacity)
     {
-
         switch ($type)
         {
-            default  : return true; break;
+            default  : return false; break;
             case 2 :   return $this->busCapacity($capacity); break;
             case 3 :   return $this->truckCapacity($capacity); break;
         }
@@ -32,16 +31,27 @@ class validation extends core\validation {
 
     private function checkToRegion($region,$toregion)
     {
-        if ( $region != $toregion && strlen($toregion) > 2 ) return true; else return false;
+       return ( $region != $toregion && strlen($toregion) > 2 ) ;
     }
 
     function checkRegions($regiontype,$region,$toregion)
     {
         if ($regiontype == 1)
-            return true ;
+            return false ;
         else
             return $this->checkToRegion($region,$toregion);
 
+    }
+
+    function getPostVars($post,$array)
+    {
+        $post=parent::getPostVars($post,$array);
+        if (is_array($post))
+        {
+            if ($post['type']==1) $post['capacity']=null;
+            if ($post['regiontype']==1) $post['toregion']=null;
+        }
+        return  $post;
     }
 
 

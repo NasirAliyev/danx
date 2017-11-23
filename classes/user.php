@@ -6,10 +6,9 @@
  * Time: 4:41 PM
  */
 
-require_once 'db.php';
+require_once './autoload.php';
 
 class user {
-
 
     public $voen;
     public $name;

@@ -135,7 +135,8 @@
             <thead>
             <tr>
                 <th>№</th>
-                <th>Avtomobilin adı</th>
+                <th>Avtomobil</th>
+                <th>Sürücü</th>
                 <th>Nömrəsi</th>
                 <th>Növü</th>
                 <th>Nəf/ton</th>
@@ -145,28 +146,7 @@
                 <th>Status</th>
             </tr>
             </thead>
-            <tbody>
-
-
-
-            <tr data-id="1">
-                <td>1</td>
-                <td>İveco Urban</td>
-                <td>10-GJ-007</td>
-                <td>
-                    <span class="vehicle-ico2 active"></span>
-                </td>
-                <td>54 nəf</td>
-                <td><span class="files">texpasport.pdf <img src="/images/clip.png"> </span></td>
-                <td>Şəhərdaxili</td>
-                <td>Bakı</td>
-                <td>Gözlənilir...
-                    <a href="javascript:void(0)" class="btn btn-info edit edit-vehicle hidden"><img src="/images/edit.png"> </a>
-                   <!-- <a href="javascript:void(0)" class="btn btn-danger delete"> <img src="/images/remove.png"></a> -->
-                </td>
-            </tr>
-
-
+            <tbody id="tbody">
 
             </tbody>
         </table>
@@ -177,14 +157,19 @@
             <div class="ut-right">  </div>
         </div>
 
-        <form action="/ajax.php?action=vehicle"  method="post" class="vehicle-form form-horizontal ">
+        <form action="/ajax.php?action=vehicle" style="display: none;"  method="post" class="vehicle-form form-horizontal ">
 
             <img class="close-form" src="/images/close.png">
 
 
             <div class="form-group">
-                <span class="col-sm-4 col-lg-3 control-label">Avtomobilin adı</span>
+                <span class="col-sm-4 col-lg-3 control-label">Avtomobil</span>
                 <div class="col-sm-8 col-lg-9 controls"><input type="text" name="vehicle" class="form-control" value=""></div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Sürücü</span>
+                <div class="col-sm-8 col-lg-9 controls"><input type="text" name="driver" class="form-control" value=""></div>
             </div>
 
             <div class="form-group">
@@ -361,25 +346,27 @@
                 </div>
             </div>
 
+            <input type="hidden" name="id" value="">
+
 
             <div class="form-group">
                 <span class="col-sm-4 col-lg-3 control-label">Texpasport (ön)</span>
-                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc1-1"></div>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc1_1"></div>
             </div>
 
             <div class="form-group">
                 <span class="col-sm-4 col-lg-3 control-label">Texpasport (arxa)</span>
-                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc1-2"></div>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc1_2"></div>
             </div>
 
             <div class="form-group">
                 <span class="col-sm-4 col-lg-3 control-label">Sürücülük vəsiqəsi (ön)</span>
-                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc2-1"> </div>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc2_1"> </div>
             </div>
 
             <div class="form-group">
                 <span class="col-sm-4 col-lg-3 control-label">Sürücülük vəsiqəsi (arxa)</span>
-                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc2-2"> </div>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc2_2"> </div>
             </div>
 
             <div class="form-group">
