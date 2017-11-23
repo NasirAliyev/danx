@@ -23,6 +23,5 @@ $user = unserialize($_SESSION['userInfo']);
 
 //print_r($user); exit();
 
-echo date('Y-m-d H:i:s', strtotime("+3 months")); exit();
 
 require_once 'view/template.php';
