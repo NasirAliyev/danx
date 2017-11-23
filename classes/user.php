@@ -120,32 +120,52 @@ class user {
 
     }
 
-
-    public static function setInfo($voen,$email,$phone)
+    private function checkAdUserInfo($email,$phone)
     {
+        $errorMsg='';
 
-        $response = 'Success';
+        $db= db::instance()->prepare('select id from users where ( email = :email or phone = :phone) and id != :userid ');
+        $db->bindParam(':email',$email);
+        $db->bindParam(':phone',$phone);
+        $db->bindParam(':userid',$this->userid);
+        $db->execute();
+
+        $row=$db->fetch(PDO::FETCH_ASSOC);
+
+        if ( $db->rowCount() > 0 ) {
+            if ($row['email']==$email && strlen($email)>0) $errorMsg='Bu E-mail artıq istifadə olunur';
+            else if ($row['phone']==$phone && strlen($phone)>0) $errorMsg='Bu Telefon nömrəsi artıq istifadə olunur';
+        }
+
+
+        return $errorMsg;
+    }
+
+    public  function setInfo($email,$phone)
+    {
+        $errorMsg = '';
 
         try
         {
-            $update = db::instance()->prepare('update users set email=:email , phone=:phone where voen=:voen');
+            if (strlen($errorMsg=$this->checkAdUserInfo($email,$phone))>0)
+                throw new Exception($errorMsg);
+
+            $update = db::instance()->prepare('update users set email=:email , phone=:phone where id=:userid');
             $update->bindParam(':email',$email);
             $update->bindParam(':phone',$phone);
-            $update->bindParam(':voen',$voen);
+            $update->bindParam(':userid',$this->userid);
             $update->execute();
 
-            self::setProperties($email,$phone);
+            $this->setProperties($email,$phone);
         }
-        catch(PDOException $e)
+        catch(Exception $e)
         {
-            $response = $e->getMessage();
+            $errorMsg = $e->getMessage();
         }
 
-        return $response;
+        return $errorMsg;
 
     }
-
-
 
 
 

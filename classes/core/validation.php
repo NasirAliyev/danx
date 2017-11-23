@@ -120,7 +120,7 @@ abstract class validation {
 
 
 
-    function getId($id)
+    public function getId($id)
     {
         $id = filter_var(filter_var($id, FILTER_SANITIZE_NUMBER_INT),FILTER_VALIDATE_INT);
         return ( is_integer($id) ) ? $id : 0 ;

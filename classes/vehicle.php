@@ -222,7 +222,7 @@ class vehicle {
                                                       (:userid,:vehicle,:driver,:number,:type,:capacity, :regiontype,:region,:toregion,:months,:time,:expire,1)');
             $insert->bindParam(':userid',$this->userid);
             $insert->bindParam(':vehicle',$post['vehicle']);
-            $insert->bindParam(':drver',$post['driver']);
+            $insert->bindParam(':driver',$post['driver']);
             $insert->bindParam(':number',$number);
             $insert->bindParam(':type',$post['type']);
             $insert->bindParam(':capacity',$post['capacity']);
@@ -270,7 +270,7 @@ class vehicle {
     {
         $list= db::instance()->prepare('select vehicles.*,files.doc1_1,files.doc1_2,files.doc2_1,files.doc2_2,files.doc3 from vehicles
                                         left join files on vehicles.id = files.vehicle_id
-                                        WHERE user_id = :userid');
+                                        WHERE vehicles.user_id = :userid');
         $list->bindParam(':userid',$this->userid);
         $list->execute();
 
@@ -285,8 +285,11 @@ class vehicle {
 
             foreach($result as $val)
             {
-               $i++;
-               $html.= '
+                $i++;
+
+                $doc3 = ($val['doc3'] != null) ? '<a target="_blank" href="/upload/'.$val['doc3'].'">Etibarnamə</a>' : '';
+
+                $html.= '
               <tr data-id="'.$val['id'].'">
                 <td>'.$i.'</td>
                 <td>'.$val['vehicle'].'</td>
@@ -296,19 +299,48 @@ class vehicle {
                     <span class="vehicle-ico'.$val['type'].' active"></span>
                 </td>
                 <td>'.$val['capacity'].' '.self::getCapacityType($val['type']).'</td>
-                <td><span class="files">sənədlər... <img src="/images/clip.png"> </span></td>
+                <td class="docs-td"><span class="files">sənədlər... <img src="/images/clip.png"> </span>
+                            <div class="vehicle-files">
+                               <a target="_blank" href="/upload/'.$val['doc1_1'].'">Texpasport (ön)</a>
+                               <a target="_blank" href="/upload/'.$val['doc1_2'].'">Texpasport (arxa)</a>
+                               <a target="_blank" href="/upload/'.$val['doc2_1'].'">Sürücülük vəsiqəsi (ön)</a>
+                               <a target="_blank" href="/upload/'.$val['doc2_2'].'">Sürücülük vəsiqəsi (arxa)</a>
+                               '.$doc3.'
+                            </div>
+                        </td>
                 <td>'.self::getRegionType($val['regiontype']).'</td>
                 <td>'.self::getRegions($val['regiontype'],$val['region'],$val['toregion']).'</td>
-                <td><span class="status-color'.$val['status'].'">'.self::getStatus($val['status']).'</span>
-                    '.self::getBtns($val['status']).'
+                <td><span class="status-color'.$val['status'].'">'.self::getStatus($val['status'],$val['expire']).'</span>
+                    '.self::getBtns($val['status'],$val['expire']).'
                 </td>
             </tr>';
             }
         }
-
+        else
+          $html='Heç bir məlumat mövcud deyil';
 
         return $html;
 
+
+
+    }
+
+
+    public function getVehicle($id)
+    {
+        $vehicle= db::instance()->prepare('select vehicles.*,files.doc1_1,files.doc1_2,files.doc2_1,files.doc2_2,files.doc3 from vehicles
+                                                 left join files on vehicles.id = files.vehicle_id
+                                           WHERE vehicles.id = :id and vehicles.user_id = :userid');
+        $vehicle->bindParam(':id',$id);
+        $vehicle->bindParam(':userid',$this->userid);
+        $vehicle->execute();
+
+        $row=$vehicle->fetch(PDO::FETCH_ASSOC);
+
+        if ($vehicle->rowCount()>0)
+            return $row;
+        else
+            return 'Məlumat tapılmadı';
 
 
     }

@@ -117,11 +117,14 @@
 
 <div class="container bg-colored egov-width selects">
     <div class="row">
-        <div class="col-md-3 sel-title">Əlaqə vasitələri:</div>
-        <div class="col-md-9 inputs no-border">
+        <div class="col-md-2 sel-title">Əlaqə vasitələri:</div>
+        <div class="col-md-10 inputs no-border">
 
-            <label> Tel : <input type="text" class="form-control"></label>
-            <label> E-poçt : <input type="text" class="form-control"></label>
+            <label> Tel : <input type="text" name="phone" class="form-control" value="<?php echo $user->phone; ?>"></label>
+            <label> E-poçt : <input type="text" name="email" class="form-control" value="<?php echo $user->email; ?>"></label>
+            <img class="ad-info-save" src="/images/save.png">
+            <span class="ad-info-status"></span>
+
 
         </div>
     </div>
@@ -351,22 +354,22 @@
 
             <div class="form-group">
                 <span class="col-sm-4 col-lg-3 control-label">Texpasport (ön)</span>
-                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc1_1"></div>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc1_1"> <div class="file-exists"></div> </div>
             </div>
 
             <div class="form-group">
                 <span class="col-sm-4 col-lg-3 control-label">Texpasport (arxa)</span>
-                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc1_2"></div>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc1_2"><div class="file-exists"></div> </div>
             </div>
 
             <div class="form-group">
                 <span class="col-sm-4 col-lg-3 control-label">Sürücülük vəsiqəsi (ön)</span>
-                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc2_1"> </div>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc2_1"><div class="file-exists"></div>  </div>
             </div>
 
             <div class="form-group">
                 <span class="col-sm-4 col-lg-3 control-label">Sürücülük vəsiqəsi (arxa)</span>
-                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc2_2"> </div>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc2_2"><div class="file-exists"></div>  </div>
             </div>
 
             <div class="form-group">
@@ -376,7 +379,7 @@
 
             <div class="form-group">
                 <span class="col-sm-4 col-lg-3 control-label">Etibarnamə </span>
-                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc3"></div>
+                <div class="col-sm-8 col-lg-9 controls"><input type="file" name="doc3"><div class="file-exists"></div> </div>
             </div>
 
             <div class="loading-overlay" style="display: none"></div>

@@ -2,7 +2,6 @@
  * Created by Nasir on 11/10/2017.
  */
 
-
 /*
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
 */
 
 
-
 $(document).ready(function() {
 
     getList();
@@ -40,10 +38,24 @@ $(document).ready(function() {
     });
 });
 
+function loadingTable()
+{
+    if ( $('.loader').size()>0 )
+         $('.loader').remove();
+    else
+    {
+        $( "#tbody" ).html('');
+        $( ".table" ).after('<div class="loader">Yüklənir...</div>');
+    }
+}
+
 
 function getList(){
 
+    loadingTable();
+
     $.post( "/ajax.php?action=getList",{  } , function( data ) {
+        loadingTable();
         $( "#tbody" ).html( data.content );
     },"json");
 }
@@ -106,7 +118,7 @@ function processJson(data) {
     if (data.code == 1) {
            color='green';
            resetForm();
-            //getAppeals(data.id);
+           getList();
     }
     else {
         color='red';
@@ -131,6 +143,7 @@ function resetForm() {
     $('form').find('span.vehicle-ico1,span.vehicle-ico2,span.vehicle-ico3').removeClass('active');
     showToRegion();
     checkNoTaxi();
+    $('.file-exists').html('');
 }
 
 
@@ -138,7 +151,6 @@ function message(msg)
 {
     $('.message-box').html(msg);
 }
-
 
 
 function changeFormStatus()
@@ -165,12 +177,87 @@ $(document).on('click','.add-vehicle',function(){
 });
 
 
-$(document).on('click','.edit-vehicle',function(){
-    id=$(this).parents('tr').data('id');
-    //getVehicles(id);
-    if ($('form.vehicle-form').is(':visible')) return false;
-    changeFormStatus();
+$(document).on('click','.close-form',function(){  changeFormStatus(); });
+
+
+$(document).on('click','a.edit-vehicle',function(){
+
+    if (!$('form.vehicle-form').is(':visible')) changeFormStatus();
+
+    $('.loading-overlay').show();  $('.close-form').hide();
+    var id = $(this).parents('tr').data('id');
+    resetForm();
+    message(" <span style='color:#084ba0'>Məlumat yüklənir...</span>");
+
+    $.post( "/ajax.php?action=getVehicle",{ id:id } , function( data ) {
+
+            $('.loading-overlay').hide();  $('.close-form').show();
+
+            if (data.content.hasOwnProperty('id'))
+            {
+
+
+                $('input[name="id"]').val(data.content.id);
+
+                $('input[name="vehicle"]').val(data.content.vehicle);
+                $('input[name="number"]').val(data.content.number);
+                $('input[name="driver"]').val(data.content.driver);
+
+                $('input[name="type"]').val(data.content.type);
+                $('form span.vehicle-ico'+data.content.type).addClass('active');
+
+                if (data.content.capacity != null)
+                    $('input[name="capacity"]').val(data.content.capacity);
+
+
+                $('input[name="months"]').val(data.content.months);
+                $('select[name="regiontype"]').val(data.content.regiontype);
+                $('select[name="region"]').val(data.content.region);
+
+                if (data.content.toregion != null)
+                    $('select[name="toregion"]').val(data.content.toregion);
+
+
+                if (data.content.doc1_1 != null)
+                $('input[name="doc1_1"]').parents('.controls').find('.file-exists').html('<a target="_blank" href="/upload/'+data.content.doc1_1+'">Fayla bax</a>');
+                if (data.content.doc1_2 != null)
+                $('input[name="doc1_2"]').parents('.controls').find('.file-exists').html('<a target="_blank" href="/upload/'+data.content.doc1_2+'">Fayla bax</a>');
+                if (data.content.doc2_1 != null)
+                $('input[name="doc2_1"]').parents('.controls').find('.file-exists').html('<a target="_blank" href="/upload/'+data.content.doc2_1+'">Fayla bax</a>');
+                if (data.content.doc2_2 != null)
+                $('input[name="doc2_2"]').parents('.controls').find('.file-exists').html('<a target="_blank" href="/upload/'+data.content.doc2_2+'">Fayla bax</a>');
+                if (data.content.doc3 != null)
+                $('input[name="doc3"]').parents('.controls').find('.file-exists').html('<a target="_blank" href="/upload/'+data.content.doc3+'">Fayla bax</a>');
+
+                showToRegion();
+                checkNoTaxi();
+                message('');
+            }
+            else
+                message(data.content);
+
+        }
+    ,"json");
+
+
 });
 
 
-$(document).on('click','.close-form',function(){  changeFormStatus(); });
+$(document).on('click','img.ad-info-save',function() {
+
+    $('.ad-info-status').html('icra olunur...');
+
+    $.post("/ajax.php?action=userInfo", {email:$('input[name="email"]').val(),phone:$('input[name="phone"]').val()}, function (data) {
+
+        if (data.code == 1)
+            color='green';
+        else
+            color='red';
+
+        $('.ad-info-status').html('<span style="color:'+color+'">'+data.content+'</span>');
+
+    }, "json");
+
+});
+
+

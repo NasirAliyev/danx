@@ -28,7 +28,7 @@ if (isset($_GET['action']) && ($user instanceof user))
                         $response = json_encode(array('code'=>0,'content'=>$postVars['capacity'].'Nəfər/ton xanası təyinatı üzrə düz yazılmaıb','param'=>'capacity'),JSON_UNESCAPED_UNICODE);
                     else if ( !$validation->checkRegions($postVars['regiontype'],$postVars['region'],$postVars['toregion'])&& !is_null($postVars['toregion']))
                         $response = json_encode(array('code'=>0,'content'=>'Şəhərlərarası tipi üçün 2 ci region düz seçilməyib','param'=>'toregion'),JSON_UNESCAPED_UNICODE);
-                    else if ($id == 0 && !$validation->checkForSelect($_FILES,array('doc1_1','doc1_2','doc2_1','doc2_2','doc3')))
+                    else if ($id == 0 && !$validation->checkForSelect($_FILES,array('doc1_1','doc1_2','doc2_1','doc2_2')))
                         $response = json_encode(array('code'=>0,'content'=>'Fayllar seçilməyib'),JSON_UNESCAPED_UNICODE);
                     else if (!$validation->checkFileSizes($_FILES,1024))
                         $response = json_encode(array('code'=>0,'content'=>'Hər bir faylın həcmi 1 MB-dan artıq olmamalıdır'),JSON_UNESCAPED_UNICODE);
@@ -41,7 +41,7 @@ if (isset($_GET['action']) && ($user instanceof user))
                         if (strlen($errorMsg=$vehicle->save($postVars,$_FILES,$id))>0)
                             $response = json_encode(array('code'=>0,'content'=>$errorMsg),JSON_UNESCAPED_UNICODE);
                         else
-                            $response = json_encode(array('code' => 0, 'content' => 'Əməliyyat uğurla icra olundu'), JSON_UNESCAPED_UNICODE);
+                            $response = json_encode(array('code' => 1, 'content' => 'Əməliyyat uğurla icra olundu'), JSON_UNESCAPED_UNICODE);
                     }
 
                }
@@ -57,6 +57,33 @@ if (isset($_GET['action']) && ($user instanceof user))
              $vehicle = new vehicle($user->userid);
 
              $response = json_encode(array('code'=>0,'content'=>$vehicle->getList()),JSON_UNESCAPED_UNICODE); break;
+
+             break;
+
+         case 'getVehicle' :
+
+             $vehicle = new vehicle($user->userid);
+             $validation=new classes\validation();
+
+             if (isset($_POST['id'])) $id=$validation->getId($_POST['id']); else $id=0;
+             $response = json_encode(array('code'=>0,'content'=>$vehicle->getVehicle($id)),JSON_UNESCAPED_UNICODE); break;
+
+             break;
+
+         case 'userInfo' :
+
+             $validation = new classes\validation();
+             $user = unserialize($_SESSION['userInfo']);
+
+             if ( strlen($errorMsg=$validation->checkAdUserInfo($_POST))>0)
+                 $response = json_encode(array('code'=>0,'content'=>$errorMsg),JSON_UNESCAPED_UNICODE);
+             else  if ( strlen($errorMsg=$user->setInfo($_POST['email'], $_POST['phone']))>0)
+                 $response = json_encode(array('code'=>0,'content'=>$errorMsg),JSON_UNESCAPED_UNICODE);
+             else {
+                 $_SESSION['userInfo'] = serialize($user);
+                 $response = json_encode(array('code' => 1, 'content' => 'Məlumatlar yadda saxlanıldı'), JSON_UNESCAPED_UNICODE);
+             }
+
 
              break;
 

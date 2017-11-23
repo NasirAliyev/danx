@@ -55,6 +55,25 @@ class validation extends core\validation {
     }
 
 
+    function checkAdUserInfo($post)
+    {
+        $errorMsg='';
+
+        if (strlen($post['phone'])>0 ) $post['phone']=preg_replace('/[^0-9]/', '', $post['phone']);
+
+        if (strlen($post['email'])==0 && strlen($post['phone'])==0)
+            $errorMsg='Heç bir məlumat daxil edilməyib';
+        if (strlen($post['email'])>0 && !$this->checkemail($post['email']))
+            $errorMsg='E-mail düzgün qeyd olunmayıb';
+        else if ( strlen($post['phone'])>0 && ( strlen($post['phone'])<9 || strlen($post['phone'])>12) )
+            $errorMsg='Telefon rəqəm sayı düzgün deyil';
+
+        return $errorMsg;
+
+
+    }
+
+
 
 
 
