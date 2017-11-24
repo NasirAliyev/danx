@@ -2,10 +2,11 @@
 
 namespace classes;
 
+use classes\core\validation as validationAbstract ;
+
 require_once 'core/validation.php';
 
-class validation extends core\validation {
-
+class validation extends validationAbstract {
 
     private function busCapacity($capacity)
     {
