@@ -12,7 +12,6 @@ abstract class validation {
     public  function checkForStrFill($array)
     {
         if (!is_array($array)) return false;
-
         $errCount=0;
 
         foreach ($array as $key => $val)
