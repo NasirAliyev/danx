@@ -2,7 +2,7 @@
 
 namespace classes\core;
 
-abstract class validation {
+abstract class Validation {
 
     public function checkemail($input)
     {
