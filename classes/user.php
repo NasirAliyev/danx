@@ -6,7 +6,7 @@
  * Time: 4:41 PM
  */
 
-require_once './autoload.php';
+require_once '.'.DIRECTORY_SEPARATOR.'autoload.php';
 
 class user {
 

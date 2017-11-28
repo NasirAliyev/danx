@@ -36,7 +36,19 @@ $(document).ready(function() {
         beforeSubmit:  preRequest,
         success:   processJson
     });
+
+    setDatepicker();
+
 });
+
+
+function setDatepicker(){
+
+    $('.datepicker').datepicker({
+        format: 'yyyy.mm.dd',
+        startDate: '-0d'
+    });
+}
 
 function loadingTable()
 {
@@ -63,9 +75,35 @@ function getList(){
 function checkNoTaxi()
 {
     if ( $('.types-area span.vehicle-ico1').hasClass('active') )
-        $('.no-taxi').fadeOut();
+        $('.no-taxi').hide();
     else
-        $('.no-taxi').fadeIn();
+        $('.no-taxi').show();
+}
+
+function checkTypeOptions()
+{
+
+    var type = $('input[name="type"]').val();
+
+    if (type == 3) $('.hideOnTruck').hide(); else $('.hideOnTruck').show();
+
+    $('[name="regiontype"] option').show();
+    $('[data-show]').hide();
+
+    $('[data-show="ontype'+type+'"]').show();
+    $('[data-hide="ontype'+type+'"]').hide();
+
+
+    $('[name="regiontype"] option').each(function(){
+        if($(this).css('display') != 'none'){
+            $('[name="regiontype"]').val($(this).val());
+            return false;
+        }
+    });
+
+    showToRegion();
+
+
 }
 
 
@@ -84,6 +122,7 @@ $(document).on('click','span.vehicle-ico1,span.vehicle-ico2,span.vehicle-ico3',f
     }
 
     checkNoTaxi();
+    checkTypeOptions();
 
 });
 
@@ -91,9 +130,9 @@ $(document).on('click','span.vehicle-ico1,span.vehicle-ico2,span.vehicle-ico3',f
 function showToRegion()
 {
     if( $('select[name="regiontype"]').val()== 2 )
-        $('select[name="toregion"]').fadeIn();
+        $('select[name="toregion"]').show();
     else
-        $('select[name="toregion"]').fadeOut();
+        $('select[name="toregion"]').hide();
 }
 
 $(document).on('change','select[name="regiontype"]',function(){
@@ -139,10 +178,14 @@ function processJson(data) {
 
 
 function resetForm() {
+
     $("form").trigger('reset');
+    $('form input[name="id"]').val('');
+    $('form input[name="type"]').val('1');
     $('form').find('span.vehicle-ico1,span.vehicle-ico2,span.vehicle-ico3').removeClass('active');
-    showToRegion();
+    $('form').find('span.vehicle-ico1').addClass('active');
     checkNoTaxi();
+    checkTypeOptions();
     $('.file-exists').html('');
     $('.warning-msg').html('').hide();
 }
@@ -157,7 +200,7 @@ function message(msg)
 function slideToForm(){
     $('form.vehicle-form').slideDown(function(){
         $('html,body').animate({
-                scrollTop: $('form.vehicle-form').offset().top},
+                scrollTop: $('.under-table').offset().top},
             'fast');
     });
 }
@@ -204,7 +247,12 @@ $(document).on('click','a.edit-vehicle',function(){
 
             if (data.content.hasOwnProperty('id'))
             {
-
+                /*
+                Object.keys(data.content).forEach(function(key) {
+                    if ( data.content[key] != null )
+                        $('[name="'+key+'"]').val(data.content[key]);
+                });
+                */
 
                 $('input[name="id"]').val(data.content.id);
 
@@ -213,6 +261,7 @@ $(document).on('click','a.edit-vehicle',function(){
                 $('input[name="driver"]').val(data.content.driver);
 
                 $('input[name="type"]').val(data.content.type);
+                $('form').find('span.vehicle-ico1,span.vehicle-ico2,span.vehicle-ico3').removeClass('active');
                 $('form span.vehicle-ico'+data.content.type).addClass('active');
 
                 if (data.content.capacity != null)
@@ -223,12 +272,18 @@ $(document).on('click','a.edit-vehicle',function(){
                 $('select[name="regiontype"]').val(data.content.regiontype);
                 $('select[name="region"]').val(data.content.region);
 
-                if (data.content.toregion != null)
-                    $('select[name="toregion"]').val(data.content.toregion);
+                $('input[name="fromdate"]').val(data.content.fromdate);
+
+                 if (data.content.toregion != null)
+                 $('select[name="toregion"]').val(data.content.toregion);
+
+
+                $('form span.vehicle-ico'+data.content.type).addClass('active');
+                setDatepicker();
+
 
                 if (data.content.status == 3 && data.content.message.length > 0 )
                     $('.warning-msg').html(data.content.message).show();
-
 
                 if (data.content.doc1_1 != null)
                 $('input[name="doc1_1"]').parents('.controls').find('.file-exists').html('<a target="_blank" href="/upload/'+data.content.doc1_1+'">Fayla bax</a>');

@@ -6,17 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-datepicker.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css?v=5">
     <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/jquery.form.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="../js/custom.js"></script>
 </head>
 
 <body>
 
-<header>
-    <div class="container egov-width header bg-colored">
+
+<div class="container egov-width pg-header bg-colored">
         <div class="row">
             <div class="col-md-9">
                 <span class="prof-title"><?php echo $user->company; ?></span>
@@ -28,8 +30,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</header>
+</div>
 
 
 <div class="container egov-width main-info">
@@ -85,35 +86,6 @@
         </div>
     </div>
 </div>
-
-<? /*
-
-    <div class="container egov-width selects bg-colored">
-        <div class="row">
-            <div class="col-md-3 sel-title">Ərazini seçin:</div>
-            <div class="col-md-9 inputs">
-
-                <select class="form-control">
-                    <option>Şəhərlərarası</option>
-                    <option>Şəhər daxili</option>
-                </select>
-
-                <select class="form-control">
-                    <option>Bakı</option>
-                    <option>İsmayıllı</option>
-                </select>
-
-                <span class="move-icon"><img src="images/shuffle.png"> </span>
-
-                <select class="form-control">
-                    <option>Bakı</option>
-                    <option>İsmayıllı</option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    */?>
 
 <div class="container bg-colored egov-width selects">
     <div class="row">
@@ -189,10 +161,10 @@
             <div class="form-group types-area">
                 <span class="col-sm-4 col-lg-3 control-label">Növü</span>
                 <div class="col-sm-8 col-lg-9 controls">
-                    <span data-val="1" class="vehicle-ico1"></span>
+                    <span data-val="1" class="vehicle-ico1 active"></span>
                     <span data-val="2" class="vehicle-ico2"></span>
                     <span data-val="3" class="vehicle-ico3"></span>
-                    <input type="hidden" name="type" >
+                    <input type="hidden" name="type" value="1">
                 </div>
             </div>
 
@@ -204,147 +176,37 @@
             </div>
 
             <div class="form-group">
-                <span class="col-sm-4 col-lg-3 control-label">Fəaliyyət ərazisinin növü</span>
+                <span class="col-sm-4 col-lg-3 control-label">Fərqlənmə nişanının növü</span>
                 <div class="col-sm-8 col-lg-9 controls">
                     <select class="form-control half-width" name="regiontype">
-                        <option value="1">Şəhərdaxili</option>
-                        <option value="2">Şəhərlərarası</option>
+                        <option data-show="ontype3" value="0">Adi</option>
+                        <option data-hide="ontype3" selected="selected" value="1">Şəhərdaxili</option>
+                        <option data-hide="ontype3" value="2">Şəhərlərarası</option>
+                        <option data-hide="ontype1" value="3">Xüsusi</option>
+                        <option data-hide="ontype1" value="4">Sifariş</option>
                     </select>
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group hideOnTruck">
                 <span class="col-sm-4 col-lg-3 control-label">Region</span>
                 <div class="col-sm-8 col-lg-9 controls">
 
                     <select class="form-control half-width" name="region">
-                        <option value="Ağcabədi">Ağcabədi</option>
-                        <option value="Ağdam">Ağdam</option>
-                        <option value="Ağdaş">Ağdaş</option>
-                        <option value="Ağstafa">Ağstafa</option>
-                        <option value="Ağsu">Ağsu</option>
-                        <option value="Astara">Astara</option>
-                        <option selected="selected" value="Bakı">Bakı</option>
-                        <option value="Balakən">Balakən</option>
-                        <option value="Beyləqan">Beyləqan</option>
-                        <option value="Bərdə">Bərdə</option>
-                        <option value="Biləsuvar">Biləsuvar</option>
-                        <option value="Cəlilabad">Cəlilabad</option>
-                        <option value="Culfa">Culfa</option>
-                        <option value="Daşkəsən">Daşkəsən</option>
-                        <option value="Füzuli">Füzuli</option>
-                        <option value="Gədəbəy">Gədəbəy</option>
-                        <option value="Gəncə">Gəncə</option>
-                        <option value="Goranboy">Goranboy</option>
-                        <option value="Göyçay">Göyçay</option>
-                        <option value="Göygöl">Göygöl</option>
-                        <option value="Göytəpə">Göytəpə</option>
-                        <option value="Hacıqabul">Hacıqabul</option>
-                        <option value="Horadiz">Horadiz</option>
-                        <option value="İmişli">İmişli</option>
-                        <option value="İsmayıllı">İsmayıllı</option>
-                        <option value="Kürdəmir">Kürdəmir</option>
-                        <option value="Lerik">Lerik</option>
-                        <option value="Lənkəran">Lənkəran</option>
-                        <option value="Masallı">Masallı</option>
-                        <option value="Mingəçevir">Mingəçevir</option>
-                        <option value="Nabran">Nabran</option>
-                        <option value="Naftalan">Naftalan</option>
-                        <option value="Naxçıvan">Naxçıvan</option>
-                        <option value="Neftçala">Neftçala</option>
-                        <option value="Oğuz">Oğuz</option>
-                        <option value="Qax">Qax</option>
-                        <option value="Qazax">Qazax</option>
-                        <option value="Qəbələ">Qəbələ</option>
-                        <option value="Qobustan">Qobustan</option>
-                        <option value="Quba">Quba</option>
-                        <option value="Qusar">Qusar</option>
-                        <option value="Saatlı">Saatlı</option>
-                        <option value="Sabirabad">Sabirabad</option>
-                        <option value="Şabran">Şabran</option>
-                        <option value="Salyan">Salyan</option>
-                        <option value="Şamaxı">Şamaxı</option>
-                        <option value="Şəki">Şəki</option>
-                        <option value="Şəmkir">Şəmkir</option>
-                        <option value="Şirvan">Şirvan</option>
-                        <option value="Siyəzən">Siyəzən</option>
-                        <option value="Sumqayıt">Sumqayıt</option>
-                        <option value="Tərtər">Tərtər</option>
-                        <option value="Tovuz">Tovuz</option>
-                        <option value="Ucar">Ucar</option>
-                        <option value="Xaçmaz">Xaçmaz</option>
-                        <option value="Xırdalan">Xırdalan</option>
-                        <option value="Xızı">Xızı</option>
-                        <option value="Xudat">Xudat</option>
-                        <option value="Yevlax">Yevlax</option>
-                        <option value="Zaqatala">Zaqatala</option>
-                        <option value="Zərdab">Zərdab</option>
+                        <?php echo $regions->getRegionList('bakı'); ?>
                     </select>
 
                     <select class="form-control half-width" name="toregion">
-                        <option value="Ağcabədi">Ağcabədi</option>
-                        <option value="Ağdam">Ağdam</option>
-                        <option value="Ağdaş">Ağdaş</option>
-                        <option value="Ağstafa">Ağstafa</option>
-                        <option value="Ağsu">Ağsu</option>
-                        <option value="Astara">Astara</option>
-                        <option selected="selected" value="Bakı">Bakı</option>
-                        <option value="Balakən">Balakən</option>
-                        <option value="Beyləqan">Beyləqan</option>
-                        <option value="Bərdə">Bərdə</option>
-                        <option value="Biləsuvar">Biləsuvar</option>
-                        <option value="Cəlilabad">Cəlilabad</option>
-                        <option value="Culfa">Culfa</option>
-                        <option value="Daşkəsən">Daşkəsən</option>
-                        <option value="Füzuli">Füzuli</option>
-                        <option value="Gədəbəy">Gədəbəy</option>
-                        <option value="Gəncə">Gəncə</option>
-                        <option value="Goranboy">Goranboy</option>
-                        <option value="Göyçay">Göyçay</option>
-                        <option value="Göygöl">Göygöl</option>
-                        <option value="Göytəpə">Göytəpə</option>
-                        <option value="Hacıqabul">Hacıqabul</option>
-                        <option value="Horadiz">Horadiz</option>
-                        <option value="İmişli">İmişli</option>
-                        <option value="İsmayıllı">İsmayıllı</option>
-                        <option value="Kürdəmir">Kürdəmir</option>
-                        <option value="Lerik">Lerik</option>
-                        <option value="Lənkəran">Lənkəran</option>
-                        <option value="Masallı">Masallı</option>
-                        <option value="Mingəçevir">Mingəçevir</option>
-                        <option value="Nabran">Nabran</option>
-                        <option value="Naftalan">Naftalan</option>
-                        <option value="Naxçıvan">Naxçıvan</option>
-                        <option value="Neftçala">Neftçala</option>
-                        <option value="Oğuz">Oğuz</option>
-                        <option value="Qax">Qax</option>
-                        <option value="Qazax">Qazax</option>
-                        <option value="Qəbələ">Qəbələ</option>
-                        <option value="Qobustan">Qobustan</option>
-                        <option value="Quba">Quba</option>
-                        <option value="Qusar">Qusar</option>
-                        <option value="Saatlı">Saatlı</option>
-                        <option value="Sabirabad">Sabirabad</option>
-                        <option value="Şabran">Şabran</option>
-                        <option value="Salyan">Salyan</option>
-                        <option value="Şamaxı">Şamaxı</option>
-                        <option value="Şəki">Şəki</option>
-                        <option value="Şəmkir">Şəmkir</option>
-                        <option value="Şirvan">Şirvan</option>
-                        <option value="Siyəzən">Siyəzən</option>
-                        <option value="Sumqayıt">Sumqayıt</option>
-                        <option value="Tərtər">Tərtər</option>
-                        <option value="Tovuz">Tovuz</option>
-                        <option value="Ucar">Ucar</option>
-                        <option value="Xaçmaz">Xaçmaz</option>
-                        <option value="Xırdalan">Xırdalan</option>
-                        <option value="Xızı">Xızı</option>
-                        <option value="Xudat">Xudat</option>
-                        <option value="Yevlax">Yevlax</option>
-                        <option value="Zaqatala">Zaqatala</option>
-                        <option value="Zərdab">Zərdab</option>
+                        <?php echo $regions->getRegionList('bakı'); ?>
                     </select>
 
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-4 col-lg-3 control-label">Başlanma tarixi</span>
+                <div class="col-sm-8 col-lg-9 controls">
+                    <input type="text"  name="fromdate" class="form-control datepicker half-width" readonly="" value="<?php echo date('Y.m.d'); ?>">
                 </div>
             </div>
 

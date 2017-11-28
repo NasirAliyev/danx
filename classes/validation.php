@@ -4,7 +4,7 @@ namespace classes;
 
 use classes\core\validation as validationAbstract ;
 
-require_once 'core/validation.php';
+require_once 'core'.DIRECTORY_SEPARATOR.'validation.php';
 
 class validation extends validationAbstract {
 
@@ -51,6 +51,10 @@ class validation extends validationAbstract {
         {
             if ($post['type']==1) $post['capacity']=null;
             if ($post['regiontype']==1) $post['toregion']=null;
+            $post['number'] = $this->getVehicleNumber($post['number']);
+            $post['time'] = time();
+            if ($this->checkDate($post['fromdate'],'Y.m.d'))
+            $post['expire']=date('Y.m.d', strtotime("+{$post['months']} months",strtotime(str_replace('.','-',$post['fromdate']))));
         }
         return  $post;
     }
@@ -60,7 +64,7 @@ class validation extends validationAbstract {
     {
         $errorMsg='';
 
-        if (strlen($post['phone'])>0 ) $post['phone']=preg_replace('/[^0-9]/', '', $post['phone']);
+        if (strlen($post['phone'])>0 ) $post['phone']=$this->getPhoneNumber($post['phone']);
 
         if (strlen($post['email'])==0 && strlen($post['phone'])==0)
             $errorMsg='Heç bir məlumat daxil edilməyib';
@@ -73,6 +77,20 @@ class validation extends validationAbstract {
 
 
     }
+
+    public function checkDate($date,$format)
+    {
+        $response = true;
+
+        if ( $response = parent::checkDate($date,$format))
+            if ( $date < date('Y.m.d'))
+                $response= false;
+
+        return $response;
+
+    }
+
+
 
 
 

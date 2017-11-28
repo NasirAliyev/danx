@@ -6,7 +6,7 @@
  * Time: 4:34 PM
  */
 
-require_once 'traits/vehicle.php';
+require_once 'traits'.DIRECTORY_SEPARATOR.'vehicle.php';
 
 class vehicle {
 
@@ -16,11 +16,11 @@ class vehicle {
 
     public function __construct($userid)  { $this->userid=$userid; }
 
-    private function checkForUpdate($id)
+    private function checkForUpdate($post,$id)
     {
         $errorMsg='';
 
-        $check= db::instance()->prepare('select status,expire from vehicles WHERE user_id = :userid and id = :id ');
+        $check= db::instance()->prepare('select status from vehicles WHERE vehicles.deletedat IS NULL and user_id = :userid and id = :id');
         $check->bindParam(':userid',$this->userid);
         $check->bindParam(':id',$id);
         $check->execute();
@@ -28,8 +28,20 @@ class vehicle {
         $row=$check->fetch(PDO::FETCH_ASSOC);
 
         if ( $check->rowCount() > 0 ) {
-            if ( $row['status'] != 1 && $row['status']!= 3 && $row['expire'] > date('Y.m.d') )
+
+            if ( $row['status'] != 1 && $row['status']!= 3  )
                 $errorMsg = 'Dəyişiklik etməyə icazə verilmir';
+            else
+            {
+                $checkNumber= db::instance()->prepare('select number from vehicles WHERE  vehicles.deletedat IS NULL and number = :number and id != :id');
+                $checkNumber->bindParam(':number',$post['number']);
+                $checkNumber->bindParam(':id',$id);
+                $checkNumber->execute();
+
+                if ( $checkNumber->rowCount() > 0 )
+                    $errorMsg = 'Bu dövlət qeydiyyat nişanı ilə avtomobil artıq mövcuddur';
+
+            }
         }
         else
             $errorMsg='Bu məlumatlara uyğun avtomobil tapılmadı';
@@ -42,11 +54,9 @@ class vehicle {
     {
         $errorMsg='';
 
-        $number = strtoupper($post['number']);
-
-        $check= db::instance()->prepare('select id from vehicles WHERE user_id = :userid and number = :number ');
+        $check= db::instance()->prepare('select id from vehicles WHERE vehicles.deletedat IS NULL and  user_id = :userid and number = :number ');
         $check->bindParam(':userid',$this->userid);
-        $check->bindParam(':number',$number);
+        $check->bindParam(':number',$post['number']);
         $check->execute();
 
         if ( $check->rowCount() > 0 ) {
@@ -59,7 +69,7 @@ class vehicle {
     private function checkForSave($post,$id)
     {
         if ($id>0)
-            return $this->checkForUpdate($id);
+            return $this->checkForUpdate($post,$id);
         else
             return $this->checkForInsert($post);
     }
@@ -161,20 +171,19 @@ class vehicle {
 
         try
         {
-            $time = time();
-            $expire = date('Y.m.d', strtotime("+{$post['months']} months"));
 
             $db = db::instance();
 
             $db->beginTransaction();
 
-            $update=$db->prepare('update vehicles set vehicle =:vehicle ,driver =:driver ,
+            $update=$db->prepare('update vehicles set vehicle =:vehicle ,driver =:driver ,number =:number ,
                                                      type=:type , capacity=:capacity, regiontype=:regiontype,
-                                                     region=:region, toregion=:toregion, months=:months ,
+                                                     region=:region, toregion=:toregion, months=:months , fromdate=:fromdate ,
                                                      time=:time, expire=:expire, status=1
                                                      where id=:id');
             $update->bindParam(':id',$id);
             $update->bindParam(':vehicle',$post['vehicle']);
+            $update->bindParam(':number',$post['number']);
             $update->bindParam(':driver',$post['driver']);
             $update->bindParam(':type',$post['type']);
             $update->bindParam(':capacity',$post['capacity']);
@@ -182,8 +191,9 @@ class vehicle {
             $update->bindParam(':region',$post['region']);
             $update->bindParam(':toregion',$post['toregion']);
             $update->bindParam(':months',$post['months']);
-            $update->bindParam(':time',$time);
-            $update->bindParam(':expire',$expire);
+            $update->bindParam(':fromdate',$post['fromdate']);
+            $update->bindParam(':time',$post['time']);
+            $update->bindParam(':expire',$post['expire']);
             $update->execute();
 
             if (strlen($errorMsg=$this->updateFiles($files,$id))>0)
@@ -209,29 +219,25 @@ class vehicle {
         try
         {
 
-            $time = time();
-            $expire = date('Y.m.d', strtotime("+{$post['months']} months"));
-            $number = strtoupper($post['number']);
-
-
             $db = db::instance();
 
             $db->beginTransaction();
 
-            $insert=$db->prepare('INSERT INTO vehicles (user_id,vehicle,driver,number,type,capacity,regiontype,region,toregion,months,time,expire,status) VALUES
-                                                      (:userid,:vehicle,:driver,:number,:type,:capacity, :regiontype,:region,:toregion,:months,:time,:expire,1)');
+            $insert=$db->prepare('INSERT INTO vehicles (user_id,vehicle,driver,number,type,capacity,regiontype,region,toregion,months,fromdate,time,expire,status) VALUES
+                                                      (:userid,:vehicle,:driver,:number,:type,:capacity, :regiontype,:region,:toregion,:months,:fromdate,:time,:expire,1)');
             $insert->bindParam(':userid',$this->userid);
             $insert->bindParam(':vehicle',$post['vehicle']);
             $insert->bindParam(':driver',$post['driver']);
-            $insert->bindParam(':number',$number);
+            $insert->bindParam(':number',$post['number']);
             $insert->bindParam(':type',$post['type']);
             $insert->bindParam(':capacity',$post['capacity']);
             $insert->bindParam(':regiontype',$post['regiontype']);
             $insert->bindParam(':region',$post['region']);
             $insert->bindParam(':toregion',$post['toregion']);
             $insert->bindParam(':months',$post['months']);
-            $insert->bindParam(':time',$time);
-            $insert->bindParam(':expire',$expire);
+            $insert->bindParam(':time',$post['time']);
+            $insert->bindParam(':fromdate',$post['fromdate']);
+            $insert->bindParam(':expire',$post['expire']);
             $insert->execute();
 
             if (strlen($errorMsg=$this->insertFiles($files,$db->lastInsertId()))>0)
@@ -270,7 +276,7 @@ class vehicle {
     {
         $list= db::instance()->prepare('select vehicles.*,files.doc1_1,files.doc1_2,files.doc2_1,files.doc2_2,files.doc3 from vehicles
                                         left join files on vehicles.id = files.vehicle_id
-                                        WHERE vehicles.user_id = :userid');
+                                        WHERE vehicles.deletedat IS NULL and  vehicles.user_id = :userid');
         $list->bindParam(':userid',$this->userid);
         $list->execute();
 
@@ -317,7 +323,7 @@ class vehicle {
             }
         }
         else
-          $html='Heç bir məlumat mövcud deyil';
+          $html='<tr><td colspan="10" style="text-align: center">Heç bir məlumat mövcud deyil</td></tr>';
 
         return $html;
 
@@ -330,7 +336,7 @@ class vehicle {
     {
         $vehicle= db::instance()->prepare('select vehicles.*,files.doc1_1,files.doc1_2,files.doc2_1,files.doc2_2,files.doc3 from vehicles
                                                  left join files on vehicles.id = files.vehicle_id
-                                           WHERE vehicles.id = :id and vehicles.user_id = :userid');
+                                           WHERE vehicles.deletedat IS NULL  and vehicles.id = :id and vehicles.user_id = :userid');
         $vehicle->bindParam(':id',$id);
         $vehicle->bindParam(':userid',$this->userid);
         $vehicle->execute();

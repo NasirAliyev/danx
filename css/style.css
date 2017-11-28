@@ -2,7 +2,8 @@ a:hover {text-decoration:none}
 
 .egov-width
 {
-    width: 980px;
+    width: 965px;
+    overflow-y:hidden;
 }
 
 .bg-colored
@@ -10,11 +11,12 @@ a:hover {text-decoration:none}
     background:#f9f9f9;
 }
 
-.header
+.pg-header
 {
     border-radius:5px;
     margin-top:10px;
     padding:0;
+    overflow: hidden;
 }
 
 .prof-title
@@ -349,7 +351,7 @@ td .btn{
 {
     width:32px;
     position:absolute;
-    right:-16px;
+    right:0px;
     top:-16px;
     cursor:pointer;
     background:#fff;
@@ -418,8 +420,8 @@ td.docs-td:hover .vehicle-files
 
 .ad-info-status
 {
-    width: 300px;
-    min-width: 300px;
+    width: 280px;
+    min-width: 280px;
     position:relative;
     display: inline-block;
     padding-left:5px;
@@ -429,4 +431,10 @@ td.docs-td:hover .vehicle-files
 {
     font-weight:700;
     color:rgb(204, 46, 53);
+}
+
+input.datepicker
+{
+    background:#d8d2d2;
+    padding-left:15px;
 }

@@ -6,7 +6,7 @@
  * Time: 7:51 PM
  */
 
-require_once './classes/validation.php';
+require_once ('.'.DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'validation.php');
 
 class validationtest extends PHPUnit_Framework_TestCase
 {

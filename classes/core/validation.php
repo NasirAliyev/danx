@@ -125,5 +125,23 @@ abstract class validation {
         return ( is_integer($id) ) ? $id : 0 ;
     }
 
+    public function getVehicleNumber($number)
+    {
+        return strtoupper(preg_replace('~[^a-zA-Z0-9]+~', '', $number));
+    }
+
+    public function getPhoneNumber($phone)
+    {
+        return preg_replace('/[^0-9]/', '', $$phone);
+    }
+
+    public function checkDate($date,$format)
+    {
+        return !!\DateTime::createFromFormat($format, $date);
+    }
+
+
+
+
 
 }
