@@ -2,19 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e4669b7-09c7-4084-b2aa-0055952a90c9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/bootstrap-datepicker.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/bootstrap-datepicker.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/regions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ajax.php" afterPath="$PROJECT_DIR$/ajax.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/custom.js" afterPath="$PROJECT_DIR$/js/custom.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/template.php" afterPath="$PROJECT_DIR$/view/template.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/user.php" afterPath="$PROJECT_DIR$/classes/user.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/validation.php" afterPath="$PROJECT_DIR$/classes/validation.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/core/validation.php" afterPath="$PROJECT_DIR$/classes/core/validation.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/validationTest.php" afterPath="$PROJECT_DIR$/tests/validationTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/vehicle.php" afterPath="$PROJECT_DIR$/classes/vehicle.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="danx.iws" />
@@ -568,13 +555,20 @@
       <option name="project" value="LOCAL" />
       <updated>1511561002016</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="updates">
+      <created>1511884177239</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1511884177239</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -590,7 +584,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -862,6 +855,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="35632">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -869,6 +863,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="7417" max-vertical-offset="8092">
           <caret line="470" column="52" selection-start-line="470" selection-start-column="52" selection-end-line="470" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
