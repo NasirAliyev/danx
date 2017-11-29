@@ -22,12 +22,14 @@ if (isset($_GET['action']) && ($user instanceof user))
                          $response = json_encode(array('code'=>0,'content'=>'Müraciət düzgün edilməyib'),JSON_UNESCAPED_UNICODE);
                     else if ( !$validation->checkForStrFill(array($postVars['vehicle'],$postVars['driver'],$postVars['number'],$postVars['region'])) )
                          $response = json_encode(array('code'=>0,'content'=>'Bütün xanalarını doldurmaq vacibdir'),JSON_UNESCAPED_UNICODE);
-                    else if ( !$validation->checkForIntFill (array($postVars['type'],$postVars['regiontype'],$postVars['months'])) )
+                    else if ( !$validation->checkForIntFill (array($postVars['type'],$postVars['months'])) )
                         $response = json_encode(array('code'=>0,'content'=>'Bütün xanaları doldurmaq vacibdir'),JSON_UNESCAPED_UNICODE);
                     else if ( !$validation->checkDate($postVars['fromdate'],'Y.m.d') )
                         $response = json_encode(array('code'=>0,'content'=>'Tarix düzgün seçilməyib','param'=>'fromdate'),JSON_UNESCAPED_UNICODE);
                     else if ( !$validation->checkCapacity($postVars['type'],$postVars['capacity']) && !is_null($postVars['capacity']))
                         $response = json_encode(array('code'=>0,'content'=>$postVars['capacity'].'Nəfər/ton xanası təyinatı üzrə düz yazılmaıb','param'=>'capacity'),JSON_UNESCAPED_UNICODE);
+                    else if ( !$validation->checkRegionType($postVars['type'],$postVars['regiontype']))
+                        $response = json_encode(array('code'=>0,'content'=>'Fərqlənmə nişanının növü düzgün seçilməyib','param'=>'regiontype'),JSON_UNESCAPED_UNICODE);
                     else if ( !$validation->checkRegions($postVars['regiontype'],$postVars['region'],$postVars['toregion'])&& !is_null($postVars['toregion']))
                         $response = json_encode(array('code'=>0,'content'=>'Şəhərlərarası tipi üçün 2 ci region düz seçilməyib','param'=>'toregion'),JSON_UNESCAPED_UNICODE);
                     else if ($id == 0 && !$validation->checkForSelect($_FILES,array('doc1_1','doc1_2','doc2_1','doc2_2')))

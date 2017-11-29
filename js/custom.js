@@ -85,8 +85,6 @@ function checkTypeOptions()
 
     var type = $('input[name="type"]').val();
 
-    if (type == 3) $('.hideOnTruck').hide(); else $('.hideOnTruck').show();
-
     $('[name="regiontype"] option').show();
     $('[data-show]').hide();
 

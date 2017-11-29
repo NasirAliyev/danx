@@ -188,7 +188,7 @@
                 </div>
             </div>
 
-            <div class="form-group hideOnTruck">
+            <div class="form-group">
                 <span class="col-sm-4 col-lg-3 control-label">Region</span>
                 <div class="col-sm-8 col-lg-9 controls">
 

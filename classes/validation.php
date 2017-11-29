@@ -44,6 +44,18 @@ class validation extends validationAbstract {
 
     }
 
+    function checkRegionType($type,$regiontype)
+    {
+        $response = true;
+        $allowedRTypes = array(1=>array(1,2),2=>array(1,2,3,4),3=>array(0,3,4));
+
+         if ( $type >= 1 && $type <= 3 )
+            if ( !in_array($regiontype,$allowedRTypes[$type]) )
+                $response = false;
+
+        return $response;
+    }
+
     function getPostVars($post,$array)
     {
         $post=parent::getPostVars($post,$array);
