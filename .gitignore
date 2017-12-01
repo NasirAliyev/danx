@@ -1,3 +1,4 @@
 pass.txt
 phpunit.phar
+classes/db.php
 .idea/
