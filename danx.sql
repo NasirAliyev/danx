@@ -180,7 +180,6 @@ ALTER TABLE `files`
 -- Indexes for table `regions`
 --
 ALTER TABLE `regions`
-  ADD UNIQUE KEY `id_2` (`id`),
   ADD KEY `id` (`id`);
 
 --

@@ -25,7 +25,7 @@ $user = unserialize($_SESSION['userInfo']);
 //unset($_SESSION['regions']);
 
 if ( !isset($_SESSION['regions']) ) {
-    $regions = new Regions();
+    $regions = new regions();
     $_SESSION['regions'] = serialize($regions);
 }
 
@@ -33,3 +33,4 @@ $regions = unserialize($_SESSION['regions']);
 
 
 require_once 'view/template.php';
+
